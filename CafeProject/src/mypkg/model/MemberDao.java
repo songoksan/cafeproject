@@ -51,53 +51,51 @@ public class MemberDao extends SuperDao {
 		}
 		return cnt ;
 	}
-//	public int UpdateData( Member bean ){
-//		System.out.println( bean.toString() ); 
-//		String sql = " update members set ";
-//		sql += " mpoint=?, name=?, password=?, salary=?, hiredate=to_date(?, 'yyyy/MM/dd'), " ;    
-//		sql += " gender=?, hobby=?, job=?, zipcode=?, address1=?, address2=?  " ;
-//		sql += " where id = ? " ; 
-//		PreparedStatement pstmt = null ;
-//		int cnt = -99999 ;
-//		try {
-//			if( conn == null ){ super.conn = super.getConnection() ; }
-//			conn.setAutoCommit( false );
-//			pstmt = super.conn.prepareStatement(sql) ;
-//			//개발자가 수정할 곳 2 : ? 수정할 것
-//			pstmt.setString(12, bean.getId());
-//			pstmt.setString(2, bean.getName());
-//			pstmt.setString(3, bean.getPassword());			
-//			pstmt.setInt(4, bean.getSalary());			
-//			pstmt.setString(5, bean.getHiredate());			
-//			pstmt.setString(6, bean.getGender());
-//			pstmt.setString(7, bean.getHobby());
-//			pstmt.setString(8, bean.getJob());
-//			pstmt.setString(9, bean.getZipcode());
-//			pstmt.setString(10, bean.getAddress1());
-//			pstmt.setString(11, bean.getAddress2());
-//			pstmt.setInt(1, bean.getMpoint());
-//			
-//			cnt = pstmt.executeUpdate() ; 
-//			conn.commit(); 
-//		} catch (Exception e) {
-//			SQLException err = (SQLException)e ;			
-//			cnt = - err.getErrorCode() ;			
-//			e.printStackTrace();
-//			try {
-//				conn.rollback(); 
-//			} catch (Exception e2) {
-//				e2.printStackTrace();
-//			}
-//		} finally{
-//			try {
-//				if( pstmt != null ){ pstmt.close(); }
-//				super.closeConnection(); 
-//			} catch (Exception e2) {
-//				e2.printStackTrace();
-//			}
-//		}
-//		return cnt ;
-//	}
+	public int UpdateData( Member bean ){
+		System.out.println( bean.toString() ); 
+		String sql = " update members set ";
+		sql += " name=?, password=?, email=?, phnumber=?, " ;    
+		sql += " zipcode=?, address1=?, address2=?  " ;
+		sql += " where mid = ? " ; 
+		PreparedStatement pstmt = null ;
+		int cnt = -99999 ;
+		try {
+			if( conn == null ){ super.conn = super.getConnection() ; }
+			conn.setAutoCommit( false );
+			pstmt = super.conn.prepareStatement(sql) ;
+			//개발자가 수정할 곳 2 : ? 수정할 것
+
+			pstmt.setString(1, bean.getName());
+			pstmt.setString(2, bean.getPassword());
+			pstmt.setString(3, bean.getEmail());
+			pstmt.setString(4, bean.getPhnumber());
+			pstmt.setString(5, bean.getZipcode());
+			pstmt.setString(6, bean.getAddress1());
+			pstmt.setString(7, bean.getAddress2());
+			pstmt.setString(8, bean.getMid());			
+			cnt = pstmt.executeUpdate() ; 
+			conn.commit(); 
+		} catch (Exception e) {
+			SQLException err = (SQLException)e ;			
+			cnt = - err.getErrorCode() ;			
+			e.printStackTrace();
+			try {
+				conn.rollback(); 
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		} finally{
+			try {
+				if( pstmt != null ){ pstmt.close(); }
+				super.closeConnection(); 
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return cnt ;
+	}
+	
+	
 //	public int DeleteData( String pmkey ){		
 //		String sql = " delete from members where id = ? " ;
 //		PreparedStatement pstmt = null ;
@@ -255,6 +253,7 @@ public class MemberDao extends SuperDao {
 				bean.setEmail( rs.getString("email")) ;
 				bean.setAddress1( rs.getString("address1") );
 				bean.setAddress2( rs.getString("address2") );
+				bean.setZipcode(rs.getString("zipcode"));
 				bean.setPhnumber( rs.getString("phnumber") );
 				bean.setMpoint(rs.getInt("mpoint"));
 				

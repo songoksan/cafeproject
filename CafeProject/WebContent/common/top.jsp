@@ -107,7 +107,7 @@
 									<a href="<%=MyCtrlCommand%>meInsertForm">회원 가입</a>
 								</c:if>
 								<c:if test="${whologin != 0}">
-									<a href="#">회원 정보 수정</a>
+									<a href="<%=MyCtrlCommand%>meUpdateForm&mid=${sessionScope.loginfo.mid}">회원 정보 수정</a>
 								</c:if>
 							</li>
 							<li><c:if test="${whologin == 0}">

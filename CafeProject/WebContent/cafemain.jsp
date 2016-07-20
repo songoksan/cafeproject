@@ -6,7 +6,6 @@
 <%	
 	String meLoginForm = MyCtrlCommand + "meLoginForm"  ;
 	String meInsertForm = MyCtrlCommand + "meInsertForm"  ;
-
 %>	
 <html>
 <head>
@@ -14,7 +13,6 @@
 	<title>Insert title here</title>
 </head>
 <body>
-
 	<a href="<%=meLoginForm%>">로그인</a><br><br><!-- 버튼누를시  commandList.properties를 통해 이동-->
 	<a href="<%=meInsertForm%>">회원 가입</a><br><br>
 	여긴 홈이야
